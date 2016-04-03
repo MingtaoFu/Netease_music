@@ -43,7 +43,6 @@ a {
   #resultList .specialTh {
     width: 220px; }
   #resultList .songRaw {
-    background-color: #2B2B2B;
     box-sizing: border-box; }
     #resultList .songRaw:hover {
       background-color: #323232; }
@@ -63,11 +62,13 @@ a {
   #resultTable > tbody {
     display: block;
     height: 100%;
+    background-color: #2B2B2B;
     overflow-y: scroll; }
 
 #listList {
   float: left;
   width: 150px;
+  height: 100%;
   background-color: #3C3F41;
   border-right: 1px solid #2D2E2E; }
   #listList .selected {
@@ -77,7 +78,39 @@ a {
   position: fixed;
   bottom: 0;
   height: 50px;
-  width: 100%;
-  background-color: rebeccapurple; }
+  width: 100%; }
+
+.searchForm {
+  display: inline-block;
+  margin-top: 7px; }
+  .searchForm .searchInput {
+    height: 26px;
+    border: 1px solid #606061;
+    border-radius: 13px;
+    box-sizing: border-box;
+    background-color: #45494A;
+    outline: none;
+    color: #B2B3B2;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 14px;
+    transition: box-shadow 0.2s; }
+    .searchForm .searchInput:focus {
+      box-shadow: 0 0 1px 1px #536DA4; }
+
+#header {
+  height: 40px;
+  background-color: #3E434C;
+  border-bottom: 1px solid #515151; }
+  #header .searchForm {
+    float: right;
+    margin-right: 20px; }
+
+#login {
+  color: #B2B3B2;
+  float: right;
+  margin-top: 12px;
+  margin-right: 20px;
+  font-size: 14px; }
 
 /*# sourceMappingURL=main.css.map */

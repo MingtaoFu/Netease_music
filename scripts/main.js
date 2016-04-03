@@ -95,7 +95,12 @@ angular.module("app", ['api'])
           },
           function () {
             player.play()
-          })
+          }
+        );
+        player.on('playend',function(item){
+          // return a playend item
+          console.log('src:' + item + ' play done, switching to next one ...');
+        });
       })
     }
   })
