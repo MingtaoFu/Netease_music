@@ -77,7 +77,7 @@ angular.module("app", ['api'])
       templateUrl: "./template/search.html"
     }
   })
-  .controller("ctrl", function($scope, myReq, searchSongs, getSong, archive, getLyric, $rootScope) {
+  .controller("ctrl", function($scope, myReq, archive, api) {
     $scope.defaultSearchValue = "单车";
     $scope.songsArr = [];
     $scope.listList = {
@@ -90,16 +90,14 @@ angular.module("app", ['api'])
     };
     $scope.lyric = "";
     $scope.submit = function () {
-      var param = searchSongs($scope.defaultSearchValue);
+      var param = api('searchSongs', $scope.defaultSearchValue);
       var url = "http://music.163.com/weapi/cloudsearch/get/web?csrf_token=";
       myReq('POST', url, param).then(function(data) {
         $scope.songsArr = data.result.songs;
-        console.log(data)
       });
     };
     $scope.getLyric = function (id) {
-      console.log(11)
-      var param = getLyric(id);
+      var param = api('getLyric', id);
       var url = 'http://music.163.com/weapi/song/lyric?csrf_token=';
       myReq('POST', url, param).then(function (data) {
         $scope.lyric = data.lrc.lyric.replace(/\[.+?\]/g,"");
@@ -107,9 +105,9 @@ angular.module("app", ['api'])
     };
     $scope.archiveProcess = 0;
     $scope.getSong = function (index) {
-      var param = getSong($scope.songsArr[index].id);
+      var param = api('getSong', $scope.songsArr[index].id);
       var url = "http://music.163.com/weapi/song/enhance/player/url?csrf_token=";
-      $scope.getLyric($scope.songsArr[index].id)
+      $scope.getLyric($scope.songsArr[index].id);
       myReq('POST', url, param).then(function (data) {
         var player = new Player('./cache/songs/' + $scope.songsArr[index].id + ".mp3");
         archive(

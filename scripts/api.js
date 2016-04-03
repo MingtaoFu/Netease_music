@@ -22,7 +22,6 @@ function RSAKeyPair(a,b,c){this.e=biFromHex(a),this.d=biFromHex(b),this.m=biFrom
             iv: d,
             mode: CryptoJS.mode.CBC
         });
-        console.log(CryptoJS.AES.encrypt)
         return f.toString();
     }
     function c(a, b, c) {
@@ -143,37 +142,35 @@ var wZ = function(gd, DB, bGp) {
 var Dt = bd("nm.x.ek");
 var bm = bd("nej.u");
 
-//console.log("mp3: "+encodeURI(result).replace(/\//g,"%2F").replace(/\+/g,"%2B"));
-
-
 angular.module('api', [])
-  .factory('searchSongs', function () {
-    return function (key, offset) {
-      offset = offset || 0;
-      var string = '{"hlpretag":"<span class=\\"s-fc7\\">","hlposttag":"</span>","s":"' +
-        key +
-        '","type":"1","offset":"' +
-        offset +
-        '","total":"true","limit":"30","csrf_token":""}';
-      var searchBnS = window.asrsea(string, QJ(["流泪", "强"]), QJ(md), QJ(["爱心", "女孩", "惊恐", "大笑"]));
-      return  wZ({params:searchBnS.encText,encSecKey:searchBnS.encSecKey},"&",!0);
-    }
-  })
-  .factory('getSong', function () {
-    return function (id) {
-      var string = '{"ids":"[' +
+  .service('seckeyGenerator', function () {
+    return {
+      searchSongs: function (key, offset) {
+        offset = offset || 0;
+        return string = '{"hlpretag":"<span class=\\"s-fc7\\">","hlposttag":"</span>","s":"' +
+          key +
+          '","type":"1","offset":"' +
+          offset +
+          '","total":"true","limit":"30","csrf_token":""}';
+      },
+      getSong: function (id) {
+        return '{"ids":"[' +
         id +
         ']","br":128000,"csrf_token":""}';
-      var bnS = window.asrsea(string, QJ(["流泪", "强"]), QJ(md), QJ(["爱心", "女孩", "惊恐", "大笑"]));
-      return  wZ({params:bnS.encText,encSecKey:bnS.encSecKey},"&",!0);
-    }
+      },
+      getLyric: function (id) {
+        return '{"id":"' +
+          id +
+          '","lv":-1,"tv":-1,"csrf_token":""}';
+      }
+    };
   })
-  .factory('getLyric', function () {
-    return function (id) {
-      var string = '{"id":"' +
-        id +
-        '","lv":-1,"tv":-1,"csrf_token":""}';
-      var bnS = window.asrsea(string, QJ(["流泪", "强"]), QJ(md), QJ(["爱心", "女孩", "惊恐", "大笑"]));
-      return  wZ({params:bnS.encText,encSecKey:bnS.encSecKey},"&",!0);
-    }
+  .factory('api', function (seckeyGenerator) {
+    return function () {
+      var key = Array.prototype.shift.call(arguments);
+      var string = seckeyGenerator[key].apply(null, arguments);
+      var searchBnS = window.asrsea(string, QJ(["流泪", "强"]), QJ(md), QJ(["爱心", "女孩", "惊恐", "大笑"]));
+      return  wZ({params:searchBnS.encText,encSecKey:searchBnS.encSecKey},"&",!0);
+    };
   })
+  
