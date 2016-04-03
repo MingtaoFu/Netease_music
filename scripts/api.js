@@ -112,32 +112,32 @@ var emj = {
 var md = ["色", "流感", "这边", "弱", "嘴唇", "亲", "开心", "呲牙", "憨笑", "猫", "皱眉", "幽灵", "蛋糕", "发怒", "大哭", "兔子", "星星", "钟情", "牵手", "公鸡", "爱意", "禁止", "狗", "亲亲", "叉", "礼物", "晕", "呆", "生病", "钻石", "拜", "怒", "示爱", "汗", "小鸡", "痛苦", "撇嘴", "惶恐", "口罩", "吐舌", "心碎", "生气", "可爱", "鬼脸", "跳舞", "男孩", "奸笑", "猪", "圈", "便便", "外星", "圣诞"];
 
 var bd = function() {
-    var KN = window;
-    for (var a = "nm.x.ek".split("."), l = a.length, i = a[0] == "window" ? 1 : 0; i < l; KN = KN[a[i]] = KN[a[i]] || {},
-        i++);
-    return KN;
+  var KN = window;
+  for (var a = "nm.x.ek".split("."), l = a.length, i = a[0] == "window" ? 1 : 0; i < l; KN = KN[a[i]] = KN[a[i]] || {},
+    i++);
+  return KN;
 };
 
 var QJ = function(bHP) {
-    var bp = [];
-    var ooo = function(bHO) {
-        bp.push(emj[bHO])
-    };
+  var bp = [];
+  var ooo = function(bHO) {
+    bp.push(emj[bHO])
+  };
 
-    bHP.forEach(ooo, null);
-    return bp.join("");
+  bHP.forEach(ooo, null);
+  return bp.join("");
 };
 
 
 var wZ = function(gd, DB, bGp) {
-    if (!gd)
-        return "";
-    var cI = [];
-    for (var x in gd) {
-        if(!gd.hasOwnProperty(x)) continue;
-        cI.push(encodeURIComponent(x) + "=" + (!!bGp ? encodeURIComponent(gd[x]) : gd[x]))
-    }
-    return cI.join(DB || ",")
+  if (!gd)
+    return "";
+  var cI = [];
+  for (var x in gd) {
+    if(!gd.hasOwnProperty(x)) continue;
+    cI.push(encodeURIComponent(x) + "=" + (!!bGp ? encodeURIComponent(gd[x]) : gd[x]))
+  }
+  return cI.join(DB || ",")
 };
 
 var Dt = bd("nm.x.ek");
@@ -148,23 +148,32 @@ var bm = bd("nej.u");
 
 angular.module('api', [])
   .factory('searchSongs', function () {
-      return function (key, offset) {
-          offset = offset || 0;
-          var string = '{"hlpretag":"<span class=\\"s-fc7\\">","hlposttag":"</span>","s":"' +
-            key +
-            '","type":"1","offset":"' +
-            offset +
-            '","total":"true","limit":"30","csrf_token":""}';
-          var searchBnS = window.asrsea(string, QJ(["流泪", "强"]), QJ(md), QJ(["爱心", "女孩", "惊恐", "大笑"]));
-          return  wZ({params:searchBnS.encText,encSecKey:searchBnS.encSecKey},"&",!0);
-      }
+    return function (key, offset) {
+      offset = offset || 0;
+      var string = '{"hlpretag":"<span class=\\"s-fc7\\">","hlposttag":"</span>","s":"' +
+        key +
+        '","type":"1","offset":"' +
+        offset +
+        '","total":"true","limit":"30","csrf_token":""}';
+      var searchBnS = window.asrsea(string, QJ(["流泪", "强"]), QJ(md), QJ(["爱心", "女孩", "惊恐", "大笑"]));
+      return  wZ({params:searchBnS.encText,encSecKey:searchBnS.encSecKey},"&",!0);
+    }
   })
   .factory('getSong', function () {
-      return function (id) {
-          var string = '{"ids":"[' +
-            id +
-            ']","br":128000,"csrf_token":""}';
-          var bnS = window.asrsea(string, QJ(["流泪", "强"]), QJ(md), QJ(["爱心", "女孩", "惊恐", "大笑"]));
-          return  wZ({params:bnS.encText,encSecKey:bnS.encSecKey},"&",!0);
-      }
+    return function (id) {
+      var string = '{"ids":"[' +
+        id +
+        ']","br":128000,"csrf_token":""}';
+      var bnS = window.asrsea(string, QJ(["流泪", "强"]), QJ(md), QJ(["爱心", "女孩", "惊恐", "大笑"]));
+      return  wZ({params:bnS.encText,encSecKey:bnS.encSecKey},"&",!0);
+    }
+  })
+  .factory('getLyric', function () {
+    return function (id) {
+      var string = '{"id":"' +
+        id +
+        '","lv":-1,"tv":-1,"csrf_token":""}';
+      var bnS = window.asrsea(string, QJ(["流泪", "强"]), QJ(md), QJ(["爱心", "女孩", "惊恐", "大笑"]));
+      return  wZ({params:bnS.encText,encSecKey:bnS.encSecKey},"&",!0);
+    }
   })

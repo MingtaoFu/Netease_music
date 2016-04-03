@@ -12,51 +12,24 @@
   <header id="header">
     <a id="login">登录</a>
     <form class="searchForm" ng-submit="submit()">
-      <input ng-model="xx" class="searchInput">
+      <input ng-model="defaultSearchValue" class="searchInput">
       <button ng-click="submit()" style="display: none">搜索</button>
     </form>
   </header>
-  <section id="resultList">
-    <aside id="listList">
-      <ul>
-        <li ng-repeat="list in listList.name" class="paddingX5"
-            ng-class="{selected: $index == listList.selected}">
-          <a href="javascript: void 0">
-            {{list}}
-          </a>
-        </li>
-      </ul>
-    </aside
-    ><table id="resultTable">
-    <tbody>
-    <tr class="songRaw">
-      <th class="rowNum">序号</th>
-      <th class="songsTh">歌曲</th>
-      <th class="artistsTh">歌手</th>
-      <th class="specialTh">专辑</th>
-    </tr>
-    <tr ng-repeat="song in songsArr" class="songRaw">
-      <td class="rowNum">{{$index + 1}}</td>
-      <td>
-        <a href="javascript: void 0" ng-click="getSong($index)">
-          {{song.name}}
-        </a>
-      </td>
-      <td>
-        {{song.ar[0].name}}
-      </td>
-      <td>
-        {{song.al.name}}
-      </td>
-    </tr>
-    </tbody>
-  </table>
-  </section>
+
+  <div search-panel></div>
+  <input ng-model="xx">
+  <div lyric-panel lyric="xx"></div>
+
   <section id="toolBar">
+    <div id="songPic">
+      <img src="">
+    </div>
     <span class="iconfont">&#xe602;</span>
     <span class="iconfont">&#xe600;</span>
     <span class="iconfont">&#xe601;</span>
     {{archiveProcess}}
+    {{lyric}}
   </section>
   </body>
 </html>

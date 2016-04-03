@@ -61,8 +61,24 @@ angular.module("app", ['api'])
         })
     }
   })
-  .controller("ctrl", function($scope, myReq, searchSongs, getSong, archive) {
-    $scope.xx = "单车";
+  .directive('lyricPanel', function () {
+    return {
+      templateUrl: "./template/lyricPanel.html",
+      link: function ($scope, $ele, $attr) {
+        
+      },
+      scope: {
+        lyric: '='
+      }
+    }
+  })
+  .directive('searchPanel', function () {
+    return {
+      templateUrl: "./template/search.html"
+    }
+  })
+  .controller("ctrl", function($scope, myReq, searchSongs, getSong, archive, getLyric, $rootScope) {
+    $scope.defaultSearchValue = "单车";
     $scope.songsArr = [];
     $scope.listList = {
       selected: 1,
@@ -72,18 +88,28 @@ angular.module("app", ['api'])
         "喜爱"
       ]
     };
+    $scope.lyric = "";
     $scope.submit = function () {
-      var param = searchSongs($scope.xx);
+      var param = searchSongs($scope.defaultSearchValue);
       var url = "http://music.163.com/weapi/cloudsearch/get/web?csrf_token=";
       myReq('POST', url, param).then(function(data) {
         $scope.songsArr = data.result.songs;
         console.log(data)
       });
     };
+    $scope.getLyric = function (id) {
+      console.log(11)
+      var param = getLyric(id);
+      var url = 'http://music.163.com/weapi/song/lyric?csrf_token=';
+      myReq('POST', url, param).then(function (data) {
+        $scope.lyric = data.lrc.lyric.replace(/\[.+?\]/g,"");
+      });
+    };
     $scope.archiveProcess = 0;
     $scope.getSong = function (index) {
       var param = getSong($scope.songsArr[index].id);
       var url = "http://music.163.com/weapi/song/enhance/player/url?csrf_token=";
+      $scope.getLyric($scope.songsArr[index].id)
       myReq('POST', url, param).then(function (data) {
         var player = new Player('./cache/songs/' + $scope.songsArr[index].id + ".mp3");
         archive(
@@ -102,5 +128,8 @@ angular.module("app", ['api'])
           console.log('src:' + item + ' play done, switching to next one ...');
         });
       })
-    }
+    };
+  })
+  .controller('lyric', function () {
+    
   })

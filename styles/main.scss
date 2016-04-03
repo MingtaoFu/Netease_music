@@ -133,11 +133,21 @@ a{
 #toolBar{
   position: fixed;
   bottom: 0;
-  height: 50px;
+  height: 70px;
   width: 100%;
 
+  //background-color: #7BDCEF;
+  padding-left: 20px;
+  padding-right: 20px;
 }
+#songPic{
+  height: 50px;
+  width: 50px;
+  display: inline-block;
 
+  //background-color: rebeccapurple;
+  margin-top: 10px;
+}
 .searchForm{
   display: inline-block;
   margin-top: 7px;
