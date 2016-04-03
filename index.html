@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="UTF-8">
+    <link href="./styles/cssreset-min.css" rel="stylesheet">
+    <link href="./styles/main.css" rel="stylesheet">
+  </head>
+  <body ng-controller="ctrl">
+    <script src="./scripts/angular.min.js"></script>
+    <script src="./scripts/api.js"></script>
+    <script src="./scripts/main.js"></script>
+    <input ng-model="xx">
+    <button ng-click="submit()">搜索</button>
+    <section id="resultList">
+      <aside id="listList">
+        <ul>
+          <li ng-repeat="list in listList.name" class="paddingX5"
+              ng-class="{selected: $index == listList.selected}">
+            {{list}}
+          </li>
+        </ul>
+      </aside
+      ><table id="resultTable">
+        <tbody>
+          <tr class="songRaw">
+            <th class="rowNum">序号</th>
+            <th class="songsTh">歌曲</th>
+            <th class="artistsTh">歌手</th>
+            <th class="specialTh">专辑</th>
+          </tr>
+          <tr ng-repeat="song in songsArr" class="songRaw">
+            <td class="rowNum">{{$index + 1}}</td>
+            <td>
+              <a href="javascript: void(0)" ng-click="getSong($index)">
+                {{song.name}}
+              </a>
+            </td>
+            <td>
+              {{song.ar[0].name}}
+            </td>
+            <td>
+              {{song.al.name}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section id="toolBar">
+      <span class="iconfont">&#xe602;</span>
+      <span class="iconfont">&#xe600;</span>
+      <span class="iconfont">&#xe601;</span>
+      {{archiveProcess}}
+    </section>
+  </body>
+</html>

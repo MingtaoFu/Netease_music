@@ -1,0 +1,19 @@
+{
+  "name": "hello-node-webkit",
+  "version": "0.1.0",
+  "main": "index.html",
+  "window": {
+    "title": "netease music",
+    "toolbar": true,
+    "width": 775,
+    "height": 600,
+    "resizable": false
+  },
+  "devDependencies": {
+    "download": "^4.4.3",
+    "download-status": "^2.2.1",
+    "electron-prebuilt": "^0.37.3",
+    "player": "^0.6.1",
+    "url-download": "0.0.4"
+  }
+}

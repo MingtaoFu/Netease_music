@@ -1,0 +1,108 @@
+$listListColor: #3C3F41;
+$listListSelectedColor: #0D293E;
+$rowNumColor: #313335;
+$listColor: #2B2B2B;
+$listHoverColor: #323232;
+$listFontColor: #B2B3B2;
+
+@font-face {
+  font-family: 'iconfont';
+  src: url('http://at.alicdn.com/t/font_1459573532_6351242.eot'); /* IE9*/
+  src: url('http://at.alicdn.com/t/font_1459573532_6351242.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('http://at.alicdn.com/t/font_1459573532_6351242.woff') format('woff'), /* chrome、firefox */
+  url('http://at.alicdn.com/t/font_1459573532_6351242.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('http://at.alicdn.com/t/font_1459573532_6351242.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+a{
+  outline: none;
+
+  color: inherit;
+  text-decoration: none;
+}
+
+.iconfont{
+  font-family: iconfont, sans-serif !important;
+}
+
+.paddingX5{
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#resultList{
+  color: $listFontColor;
+  font-size: 14px;
+  line-height: 1.5em;
+
+  height: 500px;
+
+  th, td{
+    @extend .paddingX5;
+  }
+
+  .songsTh{
+    width: 200px;
+  }
+  .artistsTh{
+    width: 120px;
+  }
+  .specialTh{
+    width: 220px;
+  }
+  .songRaw{
+    background-color: $listColor;
+    box-sizing: border-box;
+    &:hover{
+      background-color: $listHoverColor;
+    }
+
+    &>.rowNum{
+      background-color: $rowNumColor;
+
+      text-align: right;
+      border-right: 1px solid #545454;
+    }
+  }
+}
+
+#listList, #resultTable{
+  display: inline-block;
+
+  vertical-align: top;
+}
+
+#resultTable{
+  display: block;
+  //bfc
+  overflow: hidden;
+  height: 100%;
+
+  &>tbody{
+    display: block;
+    height: 100%;
+
+    overflow-y: scroll;
+  }
+}
+#listList{
+  float: left;
+
+  width: 150px;
+
+  background-color: $listListColor;
+  border-right: 1px solid #2D2E2E;
+
+  .selected{
+    background-color: $listListSelectedColor;
+  }
+}
+
+#toolBar{
+  position: fixed;
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+
+  background-color: rebeccapurple;
+}
