@@ -147,7 +147,7 @@ angular.module('api', [])
     return {
       searchSongs: function (key, offset) {
         offset = offset || 0;
-        return string = '{"hlpretag":"<span class=\\"s-fc7\\">","hlposttag":"</span>","s":"' +
+        return  '{"hlpretag":"<span class=\\"s-fc7\\">","hlposttag":"</span>","s":"' +
           key +
           '","type":"1","offset":"' +
           offset +

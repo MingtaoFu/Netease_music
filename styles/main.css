@@ -110,15 +110,31 @@ a {
   height: 40px;
   background-color: #3E434C;
   border-bottom: 1px solid #515151; }
-  #header .searchForm {
+  #header > * {
     float: right;
     margin-right: 20px; }
+  #header .navListContainer {
+    color: #B2B3B2;
+    word-spacing: 1em;
+    font-size: 14px; }
+    #header .navListContainer > li {
+      display: inline-block;
+      height: 28px;
+      border-radius: 4px;
+      box-sizing: border-box;
+      padding-left: 6px;
+      padding-right: 6px; }
+      #header .navListContainer > li.active {
+        box-shadow: inset 0 0 6px 1px #23242D; }
+      #header .navListContainer > li > a {
+        line-height: 28px; }
+
+#nav {
+  margin-top: 6px; }
 
 #login {
   color: #B2B3B2;
-  float: right;
   margin-top: 12px;
-  margin-right: 20px;
   font-size: 14px; }
 
 /*# sourceMappingURL=main.css.map */

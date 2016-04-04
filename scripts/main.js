@@ -2,7 +2,7 @@ var spawn = require('child_process').spawn;
 var dl = require('./scripts/lib/download');
 var Player = require('player');
 
-angular.module("app", ['api'])
+angular.module("app", ['api', 'component'])
   .factory('myReq', function($q) {
     return function(method, url, data) {
       var curlParams = [
@@ -59,22 +59,6 @@ angular.module("app", ['api'])
         .on('done', function () {
           doneFunc();
         })
-    }
-  })
-  .directive('lyricPanel', function () {
-    return {
-      templateUrl: "./template/lyricPanel.html",
-      link: function ($scope, $ele, $attr) {
-        
-      },
-      scope: {
-        lyric: '='
-      }
-    }
-  })
-  .directive('searchPanel', function () {
-    return {
-      templateUrl: "./template/search.html"
     }
   })
   .controller("ctrl", function($scope, myReq, archive, api) {

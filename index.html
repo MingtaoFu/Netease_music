@@ -6,6 +6,7 @@
     <link href="./styles/main.css" rel="stylesheet">
     <script src="./scripts/angular.min.js"></script>
     <script src="./scripts/api.js"></script>
+    <script src="./scripts/component.js"></script>
     <script src="./scripts/main.js"></script>
   </head>
   <body ng-controller="ctrl">
@@ -15,21 +16,26 @@
       <input ng-model="defaultSearchValue" class="searchInput">
       <button ng-click="submit()" style="display: none">搜索</button>
     </form>
+    <nav id="nav">
+      <ul class="navListContainer">
+        <li class="active">
+          <a href="javascript: void 0">
+            找歌
+          </a>
+        </li>
+        <li>
+          <a href="javascript: void 0">
+            歌词
+          </a>
+        </li>
+      </ul>
+    </nav>
   </header>
 
   <div search-panel></div>
   <input ng-model="xx">
   <div lyric-panel lyric="xx"></div>
 
-  <section id="toolBar">
-    <div id="songPic">
-      <img src="">
-    </div>
-    <span class="iconfont">&#xe602;</span>
-    <span class="iconfont">&#xe600;</span>
-    <span class="iconfont">&#xe601;</span>
-    {{archiveProcess}}
-    {{lyric}}
-  </section>
+  <div tool-bar></div>
   </body>
 </html>
